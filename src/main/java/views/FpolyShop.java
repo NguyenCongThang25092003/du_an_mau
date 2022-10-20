@@ -911,6 +911,7 @@ public class FpolyShop extends javax.swing.JFrame {
         txtMaHD.setText(tblHoaDon.getValueAt(index, 1) + "");
         txtTenNV.setText(tblHoaDon.getValueAt(index, 3) + "");
         txtNgayTao.setText(tblHoaDon.getValueAt(index, 2) + "");
+        
     }
 
     private void clearTblGioHang() {
