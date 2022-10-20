@@ -48,13 +48,14 @@ public abstract class CrudRepository<K, Entity, Response> {
             trans = session.beginTransaction();
             session.saveOrUpdate(entity);
             trans.commit();
+            session.close();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         return entity;
     }
-
+    
     public boolean saveAll(List<Entity> list) {
         try {
             session = HibernateUtil.getSession();
@@ -63,6 +64,7 @@ public abstract class CrudRepository<K, Entity, Response> {
                 session.saveOrUpdate(xx);
             }
             trans.commit();
+            session.close();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
