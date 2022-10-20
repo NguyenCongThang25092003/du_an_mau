@@ -650,8 +650,10 @@ public class FpolyShop extends javax.swing.JFrame {
             GioHangChiTiet gioHangChiTiet = new GioHangChiTiet();
             gioHangChiTiet.setIdChiTietSP(chiTietSP);
             gioHangChiTiet.setIdGioHang(gioHang);
-            this.gioHangChiTietService.delete(gioHangChiTiet);
-            listGioHang.remove(gioHangChiTietResponse.getIdChiTietSP());
+            boolean check = this.gioHangChiTietService.delete(gioHangChiTiet);
+            if (check) {
+                listGioHang.remove(gioHangChiTietResponse.getIdChiTietSP());
+            }
             loadDataGioHang();
             tinhTongTien();
         } catch (Exception e) {
@@ -910,7 +912,7 @@ public class FpolyShop extends javax.swing.JFrame {
     private void showDetailHoaDon(int index) {
         txtMaHD.setText(tblHoaDon.getValueAt(index, 1) + "");
         txtTenNV.setText(tblHoaDon.getValueAt(index, 3) + "");
-        txtNgayTao.setText(tblHoaDon.getValueAt(index, 2) + "");    
+        txtNgayTao.setText(tblHoaDon.getValueAt(index, 2) + "");
     }
 
     private void clearTblGioHang() {
