@@ -12,9 +12,5 @@ public class CuaHangRepository extends CrudRepository<UUID, CuaHang, CuaHangResp
         className = CuaHang.class.getName();
         res = "new viewmodels.CuaHangResponse(a.id, a.ma, a.ten, a.diaChi, a.thanhPho, a.quocGia)";
     }
-
-    public static void main(String[] args) {
-        List<CuaHangResponse> list = new CuaHangRepository().getAllResponse();
-        System.out.println(list);
-    }
+    
 }
