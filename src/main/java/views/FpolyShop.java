@@ -650,7 +650,7 @@ public class FpolyShop extends javax.swing.JFrame {
             GioHangChiTiet gioHangChiTiet = new GioHangChiTiet();
             gioHangChiTiet.setIdChiTietSP(chiTietSP);
             gioHangChiTiet.setIdGioHang(gioHang);
-            boolean check = this.gioHangChiTietService.delete(gioHangChiTiet);
+            this.gioHangChiTietService.delete(gioHangChiTiet);
             listGioHang.remove(gioHangChiTietResponse.getIdChiTietSP());
             loadDataGioHang();
             tinhTongTien();
