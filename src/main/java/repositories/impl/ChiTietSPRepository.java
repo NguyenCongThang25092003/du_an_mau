@@ -13,6 +13,12 @@ import viewmodels.GioHangChiTietResponse;
 
 public class ChiTietSPRepository extends CrudRepository<UUID, ChiTietSP, ChiTietSPResponse> {
 
+    public ChiTietSPRepository() {
+        className = ChiTietSP.class.getName();
+        res = "new viewmodels.ChiTietSPResponse (a.id, a.sanPham.ten, a.nsx.ten, a.mauSac.ten, "
+                + "a.dongSP.ten, a.namBH, a.moTa, a.soLuongTon, a.giaBan, a.giaNhap)";
+    }
+
     public boolean updateSoLuong(Map<UUID, GioHangChiTietResponse> list) {
         boolean check = false;
         String sql = "UPDATE ChiTietSP SET SoLuongTon = SoLuongTon - :soLuongMua WHERE id = :id";
@@ -50,5 +56,5 @@ public class ChiTietSPRepository extends CrudRepository<UUID, ChiTietSP, ChiTiet
         }
         return list;
     }
-    
+
 }

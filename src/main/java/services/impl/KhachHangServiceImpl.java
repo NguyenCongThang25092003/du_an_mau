@@ -20,6 +20,9 @@ public class KhachHangServiceImpl implements KhachHangService {
         return khachHangRepository.getAllResponse();
     }
 
+    String pattern = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+//    String pattern = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{6,20})";
+    
     @Override
     public String insert(KhachHang khachHang) {
         if (khachHang.getMa().trim().isEmpty()) {
@@ -46,11 +49,19 @@ public class KhachHangServiceImpl implements KhachHangService {
         if (khachHang.getSdt().trim().isEmpty()) {
             return "Số điện thoại không được trống";
         }
-        if (khachHang.getSdt().length() != 10 || !khachHang.getSdt().endsWith("0")) {
+        try {
+            Long.parseLong(khachHang.getSdt());
+        } catch (Exception e) {
+            return "Số phải là số";
+        }
+        if (khachHang.getSdt().length() != 10 || !khachHang.getSdt().startsWith("0")) {
             return "Số điện thoại phải 10 số và bắt đầu bằng 0";
         }
         if (khachHang.getMatKhau().trim().isEmpty()) {
             return "Mật khẩu không được trống";
+        }
+        if(!khachHang.getMatKhau().matches(pattern)){
+            return "Mật khẩu sai";
         }
         KhachHang khachHangFind = khachHangRepository.findByMa(khachHang.getMa());
         if (khachHangFind != null) {
